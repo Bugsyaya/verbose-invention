@@ -1,5 +1,6 @@
 import MiniSearch from 'minisearch'
 import { useEffect, useState } from 'react'
+import { useBreakpoint } from 'use-breakpoint'
 import './App.css'
 import { Card } from './componants/card'
 import { Filters } from './componants/filters'
@@ -13,8 +14,12 @@ function App() {
   const [final, setFinal] = useState()
   const [inputValue, setInputValue] = useState()
   const [selectedFilter, setSelectedFilter] = useState()
+  const BREAKPOINTS = { mobile: 0, tablet: 768, desktop: 1280 }
+  const {breakpoint } = useBreakpoint(BREAKPOINTS, 'mobile')
   const list = selectedFilter ? final?.filter(f => f['Thème principal'] === selectedFilter) : final
   const themes = [...new Set(final?.map(f =>  f['Thème principal']))]
+
+  console.log("breakpoint : ", breakpoint)
 
   useEffect(() => {
     getQuestionsAnswers().then(r => setResult(r))
@@ -41,9 +46,9 @@ function App() {
       <div id="background"/>
       <div className='flex flex-col w-full lg:w-3/4 m-auto p-2 lg:p-10'>
         <Input setValue={setInputValue} className='mb-5'/>
-        <Filters clear={!!selectedFilter} themes={themes} setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter}/>
+        {breakpoint !== 'mobile' && <Filters clear={!!selectedFilter} themes={themes} setSelectedFilter={setSelectedFilter} selectedFilter={selectedFilter}/>}
         <div id='card-container'>
-          {list?.map(m => <Card key={m.id} element={m} />)}
+          {list?.map(m => <Card key={m.id} element={m} breakpoint={breakpoint}/>)}
         </div>
       </div>
     </div>
