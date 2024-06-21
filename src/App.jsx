@@ -26,7 +26,7 @@ function App() {
   
   useEffect(() => {
     if(inputValue){
-      const rr = new MiniSearch({ fields: ['Questions', "Réponse"], searchOptions: {
+      const rr = new MiniSearch({ fields: ['Questions', "Réponse", "Proposition Raccourcie"], searchOptions: {
         boost: { title: 2 },
         fuzzy: 0.1
       }})
