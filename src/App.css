@@ -4,7 +4,7 @@ body, #container {
 }
 
 #background {
-  background-image: url('./illu.png');
+  background-image: url('/verbose-invention/illu.png');
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
