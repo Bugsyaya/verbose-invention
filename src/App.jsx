@@ -37,7 +37,7 @@ function App() {
   }, [inputValue, map])
 
   return (
-    <div id="container">
+    <div id="container" className='font-sans'>
       <div id="background"/>
       <div className='flex flex-col w-full lg:w-3/4 m-auto p-2 lg:p-10'>
         <Input setValue={setInputValue} className='mb-5'/>
